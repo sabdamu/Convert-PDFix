@@ -1,0 +1,7 @@
+{
+  "name": "Convert PDFix",
+  "description": "A comprehensive file conversion and PDF management platform by ScriptGenius, powered by Gemini AI for smart document analysis and summaries.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
