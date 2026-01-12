@@ -1,4 +1,24 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyD07koeB_vSEN9-4KK0VdQqdh97fV4yRsY",
+  authDomain: "convert-pdfix.firebaseapp.com",
+  projectId: "convert-pdfix",
+  storageBucket: "convert-pdfix.firebasestorage.app",
+  messagingSenderId: "864443968398",
+  appId: "1:864443968398:web:5cadd357059e530b3992df",
+  measurementId: "G-Q8VXEGWT2J"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 import React from 'react';
 import { HashRouter as Router, Routes, Route, useNavigate, useParams } from 'react-router-dom';
 import Header from './components/Header';
