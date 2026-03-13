@@ -25,7 +25,7 @@ export const TOOLS: Tool[] = [
     icon: <FileText className="w-8 h-8" />,
     category: 'convert',
     from: '.pdf',
-    to: '.docx',
+    to: '.doc',
     color: 'bg-blue-500'
   },
   {
@@ -55,7 +55,7 @@ export const TOOLS: Tool[] = [
     icon: <FileSpreadsheet className="w-8 h-8 text-green-500" />,
     category: 'convert',
     from: '.pdf',
-    to: '.xlsx',
+    to: '.xls',
     color: 'bg-green-500'
   },
   {

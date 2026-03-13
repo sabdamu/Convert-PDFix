@@ -1,16 +1,20 @@
 
 import React from 'react';
 import { Twitter, Facebook, Instagram, Linkedin, Mail } from 'lucide-react';
-import Logo from './Logo';
+import logoUrl from '../assets/logo.svg';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  onLegalClick?: (type: 'privacy' | 'terms' | 'cookie' | 'about' | 'help') => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onLegalClick }) => {
   return (
     <footer className="bg-white border-t mt-auto">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
           <div className="col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <Logo className="w-10 h-10" />
+              <img src={logoUrl} alt="Logo" className="w-10 h-10" />
               <div className="flex flex-col -space-y-1">
                 <span className="text-xl font-black tracking-tight text-[#005696]">Convert</span>
                 <span className="text-[10px] font-bold text-[#be123c] tracking-[0.2em]">PDFix</span>
@@ -31,7 +35,7 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h4 className="font-bold mb-4">Solusi</h4>
+            <h4 className="font-bold mb-4 text-gray-900">Solusi</h4>
             <ul className="space-y-2 text-gray-600 text-sm">
               <li><a href="#" className="hover:text-[#005696]">Gabung PDF</a></li>
               <li><a href="#" className="hover:text-[#005696]">Pisah PDF</a></li>
@@ -41,19 +45,19 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="font-bold mb-4">Perusahaan</h4>
+            <h4 className="font-bold mb-4 text-gray-900">Perusahaan</h4>
             <ul className="space-y-2 text-gray-600 text-sm">
-              <li><a href="#" className="hover:text-[#005696]">Tentang ScriptGenius</a></li>
+              <li><button onClick={() => onLegalClick?.('about')} className="hover:text-[#005696] text-left">Tentang ScriptGenius</button></li>
               <li><a href="#" className="hover:text-[#005696]">Blog</a></li>
               <li><a href="#" className="hover:text-[#005696]">Karir</a></li>
-              <li><a href="#" className="hover:text-[#005696]">Legal</a></li>
+              <li><button onClick={() => onLegalClick?.('terms')} className="hover:text-[#005696] text-left">Legal</button></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold mb-4">Bantuan</h4>
+            <h4 className="font-bold mb-4 text-gray-900">Bantuan</h4>
             <ul className="space-y-2 text-gray-600 text-sm">
-              <li><a href="#" className="hover:text-[#005696]">Pusat Bantuan</a></li>
+              <li><button onClick={() => onLegalClick?.('help')} className="hover:text-[#005696] text-left">Pusat Bantuan</button></li>
               <li><a href="mailto:scriptgenius7@gmail.com" className="hover:text-[#005696] flex items-center gap-1"><Mail className="w-3 h-3" /> Hubungi Kami</a></li>
               <li><a href="#" className="hover:text-[#005696]">Status</a></li>
             </ul>
@@ -63,9 +67,9 @@ const Footer: React.FC = () => {
         <div className="border-t mt-12 pt-8 flex flex-col md:flex-row items-center justify-between text-gray-400 text-xs">
           <p>© 2026 Convert PDFix oleh ScriptGenius. Seluruh hak cipta dilindungi.</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <a href="#" className="hover:underline">Kebijakan Privasi</a>
-            <a href="#" className="hover:underline">Syarat Layanan</a>
-            <a href="#" className="hover:underline">Kebijakan Cookie</a>
+            <button onClick={() => onLegalClick?.('privacy')} className="hover:underline">Kebijakan Privasi</button>
+            <button onClick={() => onLegalClick?.('terms')} className="hover:underline">Syarat Layanan</button>
+            <button onClick={() => onLegalClick?.('cookie')} className="hover:underline">Kebijakan Cookie</button>
           </div>
         </div>
       </div>

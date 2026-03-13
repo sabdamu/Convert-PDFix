@@ -1,32 +1,14 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyD07koeB_vSEN9-4KK0VdQqdh97fV4yRsY",
-  authDomain: "convert-pdfix.firebaseapp.com",
-  projectId: "convert-pdfix",
-  storageBucket: "convert-pdfix.firebasestorage.app",
-  messagingSenderId: "864443968398",
-  appId: "1:864443968398:web:5cadd357059e530b3992df",
-  measurementId: "G-Q8VXEGWT2J"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 import React from 'react';
 import { HashRouter as Router, Routes, Route, useNavigate, useParams } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ToolGrid from './components/ToolGrid';
 import Converter from './components/Converter';
+import LegalModal from './components/LegalModal';
 import { TOOLS } from './constants';
 import { Sparkles, Zap, Shield, Heart } from 'lucide-react';
+import logoUrl from './assets/logo.svg';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -37,6 +19,9 @@ const HomePage = () => {
       <section className="relative overflow-hidden pt-20 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-white to-gray-50">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-blue-50/50 rounded-full blur-3xl -z-10"></div>
         <div className="container mx-auto px-4 text-center">
+          <div className="flex justify-center mb-8">
+            <img src={logoUrl} alt="Convert PDFix Logo" className="w-24 h-24 drop-shadow-xl" />
+          </div>
           <div className="inline-flex items-center space-x-2 px-3 py-1 bg-blue-100 text-[#005696] rounded-full text-sm font-bold mb-6 animate-bounce">
             <Sparkles className="w-4 h-4" />
             <span>KONVERSI BERBASIS AI</span>
@@ -150,6 +135,8 @@ const ToolPage = () => {
 };
 
 const App: React.FC = () => {
+  const [legalType, setLegalType] = React.useState<'privacy' | 'terms' | 'cookie' | 'about' | 'help' | null>(null);
+
   return (
     <Router>
       <div className="min-h-screen flex flex-col font-sans">
@@ -158,7 +145,8 @@ const App: React.FC = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/tool/:toolId" element={<ToolPage />} />
         </Routes>
-        <Footer />
+        <Footer onLegalClick={setLegalType} />
+        <LegalModal type={legalType} onClose={() => setLegalType(null)} />
       </div>
     </Router>
   );
